@@ -27,6 +27,11 @@ jobs:
       - name: Clean project
         run: ./gradlew clean
 
+      - name: Copy Google-Services.json
+        env:
+          GOOGLE_SERVICES: ${{ secrets.GOOGLE_SERVICES }}
+        run: echo $GOOGLE_SERVICES > app/google-services.json
+
 #      - name: Stopping gradle
 #        run: ./gradlew --stop
 
