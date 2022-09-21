@@ -55,4 +55,33 @@ dependencies {
     //Dagger - Hilt
     implementation Dependencies.DaggerHilt
     kapt Dependencies.DaggerHiltCompiler
+
+    // Activity KTX for viewModels()
+    implementation Dependencies.ViewModelActivityKTX
+
+    // Architectural Components
+    implementation Dependencies.LifecycleKTX
+
+    // Lifecycle
+    implementation Dependencies.Lifecycle
+    implementation Dependencies.Livedata
+    implementation Dependencies.Runtime
+
+    // Retrofit
+    implementation Dependencies.Retrofit2
+    implementation Dependencies.ConverterMoshi
+    implementation Dependencies.OkHttp
+
+    implementation Dependencies.NavFragment
+    implementation Dependencies.NavUI
+    implementation Dependencies.NavDynamicSupport
+
+    implementation Dependencies.Moshi
+    kapt Dependencies.MoshiKapt
+
+    implementation project(Modules.Auth)
+    implementation project(Modules.Core)
+    implementation project(Modules.Design)
+    implementation project(Modules.Networking)
+    implementation project(Modules.Mail)
 }

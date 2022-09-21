@@ -13,4 +13,18 @@ object DependencyVersion {
 
 
     const val DaggerHilt = "2.43"
+
+    const val ViewModelActivityKTX = "1.5.0"
+
+    const val Lifecycle = "2.2.0"
+    const val LifecycleKTX = "2.5.1"
+
+    const val Retrofit = "2.9.0"
+    const val OkHttp = "4.9.3"
+
+    const val Paging = "3.1.1"
+
+    const val Navigation = "2.5.1"
+
+    const val Moshi = "1.12.0"
 }

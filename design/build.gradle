@@ -45,4 +45,8 @@ dependencies {
     testImplementation Dependencies.Junit
     androidTestImplementation Dependencies.JunitAndroid
     androidTestImplementation Dependencies.EspressoCore
+
+    implementation Dependencies.NavFragment
+    implementation Dependencies.NavUI
+    implementation Dependencies.NavDynamicSupport
 }

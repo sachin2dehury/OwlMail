@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+
 }
 
 android {
@@ -45,4 +46,25 @@ dependencies {
     testImplementation Dependencies.Junit
     androidTestImplementation Dependencies.JunitAndroid
     androidTestImplementation Dependencies.EspressoCore
+
+    // Activity KTX for viewModels()
+    implementation Dependencies.ViewModelActivityKTX
+
+    // Architectural Components
+    implementation Dependencies.LifecycleKTX
+
+    // Lifecycle
+    implementation Dependencies.Lifecycle
+    implementation Dependencies.Livedata
+    implementation Dependencies.Runtime
+
+    // Retrofit
+    implementation Dependencies.Retrofit2
+    implementation Dependencies.ConverterMoshi
+    implementation Dependencies.OkHttp
+
+    implementation Dependencies.NavFragment
+    implementation Dependencies.NavUI
+    implementation Dependencies.NavDynamicSupport
+
 }
