@@ -1,4 +1,4 @@
-package github.owlmail.networking.usecase
+package github.owlmail.networking
 
 import github.owlmail.networking.state.NetworkState
 import kotlinx.coroutines.flow.Flow

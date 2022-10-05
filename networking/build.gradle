@@ -37,18 +37,27 @@ android {
 
 dependencies {
 
-    //Core
-    implementation Dependencies.CoreKTX
-    implementation Dependencies.AppCompat
-
-
-    //View
-    implementation Dependencies.Material
-    implementation Dependencies.ConstraintLayout
-
     //Coroutine
     implementation Dependencies.CoroutineCore
     implementation Dependencies.CoroutineAndroid
+
+    // Retrofit
+    implementation Dependencies.Retrofit
+
+    // Moshi
+    implementation Dependencies.Moshi
+    implementation Dependencies.MoshiRetrofitConverter
+    kapt Dependencies.MoshiCodegen
+
+    // OkHttp
+    implementation Dependencies.OkHttp
+
+    // Stetho
+    implementation Dependencies.Stetho
+
+    // Chucker
+    debugImplementation Dependencies.Chucker
+    releaseImplementation Dependencies.ChuckerNoOP
 
     //Dagger - Hilt
     implementation Dependencies.DaggerHilt

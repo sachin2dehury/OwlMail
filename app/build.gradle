@@ -53,15 +53,9 @@ dependencies {
     implementation Dependencies.CoreKTX
     implementation Dependencies.AppCompat
 
-
     //View
     implementation Dependencies.Material
     implementation Dependencies.ConstraintLayout
-
-    //Test
-    testImplementation Dependencies.Junit
-    androidTestImplementation Dependencies.JunitAndroid
-    androidTestImplementation Dependencies.EspressoCore
 
     // Firebase
     implementation platform(Dependencies.FirebaseBom)
@@ -72,8 +66,13 @@ dependencies {
     implementation Dependencies.DaggerHilt
     kapt Dependencies.DaggerHiltCompiler
 
+    //Test
+    testImplementation Dependencies.Junit
+    androidTestImplementation Dependencies.JunitAndroid
+    androidTestImplementation Dependencies.EspressoCore
+
     //Lint
-    lintChecks project(':lint-rules')
+    lintChecks project(Modules.LintRules)
 }
 
 kapt {

@@ -5,12 +5,12 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import github.owlmail.networking.NetworkStateFlow
 import github.owlmail.networking.state.NetworkState
-import github.owlmail.networking.usecase.NetworkStateFlow
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
 
-class NetworkStateFlowProvider(context: Context) : NetworkStateFlow {
+internal class NetworkStateFlowProvider(context: Context) : NetworkStateFlow {
 
     private val connectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
