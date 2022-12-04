@@ -32,6 +32,12 @@ object DependencyVersion {
     // Chucker
     const val Chucker = "3.5.2"
 
+    // Room
+    const val Room = "2.4.3"
+
+    // DataStore
+    const val DataStore = "1.0.0"
+
     // Test
     const val Junit = "4.13.2"
     const val JunitAndroid = "1.1.3"

@@ -15,8 +15,7 @@ object Dependencies {
         "com.google.dagger:hilt-android-compiler:${DependencyVersion.DaggerHilt}"
 
     // Firebase
-    const val FirebaseBom =
-        "com.google.firebase:firebase-bom:${DependencyVersion.FirebaseBom}"
+    const val FirebaseBom = "com.google.firebase:firebase-bom:${DependencyVersion.FirebaseBom}"
     const val FirebasePerformance = "com.google.firebase:firebase-perf-ktx"
     const val FirebaseRemoteConfig = "com.google.firebase:firebase-config-ktx"
     const val FirebaseAnalytics = "com.google.firebase:firebase-analytics-ktx"
@@ -47,6 +46,13 @@ object Dependencies {
     const val Chucker = "com.github.chuckerteam.chucker:library:${DependencyVersion.Chucker}"
     const val ChuckerNoOP =
         "com.github.chuckerteam.chucker:library-no-op:${DependencyVersion.Chucker}"
+
+    // Room
+    const val Room = "androidx.room:room-ktx:${DependencyVersion.Room}"
+    const val RoomCompiler = "androidx.room:room-compiler:${DependencyVersion.Room}"
+
+    // Preferences DataStore
+    const val DataStore = "androidx.datastore:datastore-preferences:${DependencyVersion.DataStore}"
 
     // Test
     const val Junit = "junit:junit:${DependencyVersion.Junit}"

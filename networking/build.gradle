@@ -37,9 +37,11 @@ android {
 
 dependencies {
 
+    // App Compat
+    implementation Dependencies.Material
+
     //Coroutine
     implementation Dependencies.CoroutineCore
-    implementation Dependencies.CoroutineAndroid
 
     // Retrofit
     implementation Dependencies.Retrofit

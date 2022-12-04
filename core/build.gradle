@@ -43,6 +43,8 @@ dependencies {
 //    implementation Dependencies.Material
 //    implementation Dependencies.ConstraintLayout
 
+    // DataStore
+    implementation Dependencies.DataStore
 
     //Test
     testImplementation Dependencies.Junit

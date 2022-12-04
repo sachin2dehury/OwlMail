@@ -11,12 +11,4 @@ sealed interface NetworkState {
         is Available -> availableState?.invoke()
         is Unavailable -> unavailableState?.invoke()
     }
-
-//    fun onAvailable(action: () -> Unit) = apply {
-//        if (this is Available) action.invoke()
-//    }
-//
-//    fun onUnavailable(action: () -> Unit) = apply {
-//        if (this is Unavailable) action.invoke()
-//    }
 }
