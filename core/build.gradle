@@ -22,8 +22,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility AppConfig.INSTANCE.JDKVersion
-        targetCompatibility AppConfig.INSTANCE.JDKVersion
+        sourceCompatibility AppConfig.JDKVersion
+        targetCompatibility AppConfig.JDKVersion
         kotlinOptions.languageVersion = AppConfig.KotlinLanguageVersion
     }
     kotlinOptions {
@@ -34,15 +34,17 @@ android {
 
 dependencies {
 
-    //Core
-    implementation Dependencies.CoreKTX
-    implementation Dependencies.AppCompat
+//    //Core
+//    implementation Dependencies.CoreKTX
+//    implementation Dependencies.AppCompat
+//
+//
+//    //View
+//    implementation Dependencies.Material
+//    implementation Dependencies.ConstraintLayout
 
-
-    //View
-    implementation Dependencies.Material
-    implementation Dependencies.ConstraintLayout
-
+    // DataStore
+    implementation Dependencies.DataStore
 
     //Test
     testImplementation Dependencies.Junit

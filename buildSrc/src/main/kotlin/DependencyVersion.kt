@@ -9,10 +9,34 @@ object DependencyVersion {
     const val ConstraintLayout = "2.1.4"
 
     // Hilt
-    const val DaggerHilt = "2.43"
+    const val DaggerHilt = "2.44"
 
     // Firebase
     const val FirebaseBom = "30.3.1"
+
+    // Coroutines
+    const val Coroutines = "1.6.4"
+
+    // Retrofit
+    const val Retrofit = "2.9.0"
+
+    // Moshi
+    const val Moshi = "1.14.0"
+
+    // OkHttp
+    const val OkHttp = "4.10.0"
+
+    // Stetho
+    const val Stetho = "1.6.0"
+
+    // Chucker
+    const val Chucker = "3.5.2"
+
+    // Room
+    const val Room = "2.4.3"
+
+    // DataStore
+    const val DataStore = "1.0.0"
 
     // Test
     const val Junit = "4.13.2"

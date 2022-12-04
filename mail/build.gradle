@@ -25,8 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility AppConfig.INSTANCE.JDKVersion
-        targetCompatibility AppConfig.INSTANCE.JDKVersion
+        sourceCompatibility AppConfig.JDKVersion
+        targetCompatibility AppConfig.JDKVersion
         kotlinOptions.languageVersion = AppConfig.KotlinLanguageVersion
     }
     kotlinOptions {
@@ -46,14 +46,27 @@ dependencies {
     implementation Dependencies.Material
     implementation Dependencies.ConstraintLayout
 
+    //Dagger - Hilt
+    implementation Dependencies.DaggerHilt
+    kapt Dependencies.DaggerHiltCompiler
+
+    // Retrofit
+    implementation Dependencies.Retrofit
+
+    // Moshi
+    implementation Dependencies.Moshi
+    implementation Dependencies.MoshiRetrofitConverter
+    kapt Dependencies.MoshiCodegen
+
+    // OkHttp
+    implementation Dependencies.OkHttp
 
     //Test
     testImplementation Dependencies.Junit
     androidTestImplementation Dependencies.JunitAndroid
     androidTestImplementation Dependencies.EspressoCore
+}
 
-
-    //Dagger - Hilt
-    implementation Dependencies.DaggerHilt
-    kapt Dependencies.DaggerHiltCompiler
+kapt {
+    correctErrorTypes true
 }
