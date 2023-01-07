@@ -3,8 +3,8 @@ package github.owlmail.core.state
 sealed interface ResultState<out T> {
     data class Success<out T>(val data: T? = null) : ResultState<T>
     data class Error<out T>(val exception: Exception, val data: T? = null) : ResultState<T>
-    data object Loading : ResultState<Nothing>
-    data object Empty : ResultState<Nothing>
+    object Loading : ResultState<Nothing>
+    object Empty : ResultState<Nothing>
 
     operator fun invoke(
         emptyState: (() -> Unit)? = null,

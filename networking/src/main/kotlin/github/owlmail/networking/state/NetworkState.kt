@@ -1,8 +1,8 @@
 package github.owlmail.networking.state
 
 sealed interface NetworkState {
-    data object Available : NetworkState
-    data object Unavailable : NetworkState
+    object Available : NetworkState
+    object Unavailable : NetworkState
 
     operator fun invoke(
         availableState: (() -> Unit)? = null,

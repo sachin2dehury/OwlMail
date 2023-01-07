@@ -36,6 +36,7 @@ android {
             }
         }
     }
+
     compileOptions {
         sourceCompatibility AppConfig.JDKVersion
         targetCompatibility AppConfig.JDKVersion
@@ -43,6 +44,17 @@ android {
     }
     kotlinOptions {
         jvmTarget = AppConfig.JvmTargetVersion
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.1"
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
     }
     namespace 'github.owlmail.app'
 }
@@ -73,6 +85,17 @@ dependencies {
 
     //Lint
     lintChecks project(Modules.LintRules)
+
+    implementation "androidx.compose.ui:ui:1.3.2"
+    implementation "androidx.compose.material:material:1.3.1"
+    implementation "androidx.compose.ui:ui-tooling-preview:1.3.2"
+    implementation 'androidx.activity:activity-compose:1.6.1'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.3.2"
+    debugImplementation "androidx.compose.ui:ui-tooling:1.3.2"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:1.3.2"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+    implementation 'androidx.compose.foundation:foundation:1.3.1'
+
 }
 
 kapt {
