@@ -26,3 +26,9 @@ include ':networking'
 include ':auth'
 include ':mail'
 include ':contacts'
+
+buildCache {
+    local {
+        enabled = true
+    }
+}
