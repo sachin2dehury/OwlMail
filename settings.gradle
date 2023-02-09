@@ -32,3 +32,6 @@ buildCache {
         enabled = true
     }
 }
+include ':auth-api'
+include ':mail-api'
+include ':contacts-api'

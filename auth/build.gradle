@@ -79,4 +79,7 @@ dependencies {
 
 
     implementation(project(Modules.Networking))
+    implementation(project(Modules.AuthApi))
+    implementation(project(Modules.MailApi))
+    implementation(project(Modules.ContactsApi))
 }
