@@ -12,6 +12,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+buildCache {
+    local {
+        enabled = true
+    }
+}
+
 rootProject.name = "Owl Mail"
 
 include ':app'
@@ -26,12 +33,8 @@ include ':networking'
 include ':auth'
 include ':mail'
 include ':contacts'
-
-buildCache {
-    local {
-        enabled = true
-    }
-}
 include ':auth-api'
 include ':mail-api'
 include ':contacts-api'
+include ':settings'
+include ':settings-api'
