@@ -1,16 +1,26 @@
 package github.owlmail.mail
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.net.toUri
 import androidx.core.view.MenuProvider
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import github.owlmail.contacts.api.ContactsNavigationDeeplink
@@ -18,14 +28,17 @@ import github.owlmail.mail.databinding.FragmentMailBoxBinding
 import github.owlmail.mail.manager.UnreadMailNotificationWorker
 import github.owlmail.settings.api.SettingsNavigationDeeplink
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MailBoxHostFragment : Fragment(), MenuProvider {
-    private var tabAdapter: MailBoxTabAdapter? = null
 
-    //adapter for viewpager
-    //tablayout and viewpager plugin
-    //check navigation
+    @Inject
+    lateinit var tabAdapter: MailBoxTabAdapter
+
+    // adapter for viewpager
+    // tablayout and viewpager plugin
+    // check navigation
     private var binding: FragmentMailBoxBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,13 +52,12 @@ class MailBoxHostFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tabAdapter = MailBoxTabAdapter(this)
-        requireActivity().addMenuProvider(this)
+        requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         setUpViewPager()
         setUpTabLayout()
 
-        //notification manager for unread mail
+        // notification manager for unread mail
         WorkManager.getInstance(requireContext()).enqueueUniquePeriodicWork(
             "OwlMailNotification",
             ExistingPeriodicWorkPolicy.KEEP,
@@ -56,7 +68,6 @@ class MailBoxHostFragment : Fragment(), MenuProvider {
                 Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
             ).build()
         )
-
     }
 
     private fun setUpViewPager() = binding?.viewPager?.run {
@@ -68,22 +79,20 @@ class MailBoxHostFragment : Fragment(), MenuProvider {
         val tabLayout = tabLayout
         val viewPager = viewPager
 
-        //sets tab names
+        // sets tab names
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabAdapter?.tabList?.getOrNull(position) ?: ""
         }.attach()
     }
 
     override fun onDestroyView() {
+        binding?.viewPager?.adapter = null
         binding = null
         super.onDestroyView()
     }
 
-    //search icon in app bar menu
+    // search icon in app bar menu
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        if(menu.size()>0){
-            return
-        }
         menuInflater.inflate(R.menu.search_menu_bar, menu)
         menu.forEach {
             when (val view = it.actionView) {
@@ -103,9 +112,8 @@ class MailBoxHostFragment : Fragment(), MenuProvider {
         }
     }
 
-
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        when(menuItem.itemId){
+        when (menuItem.itemId) {
             R.id.settings -> {
                 val request = NavDeepLinkRequest.Builder
                     .fromUri(SettingsNavigationDeeplink.SETTINGS_FRAGMENT.toUri())

@@ -10,22 +10,22 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkingModule {
     @Provides
     @Singleton
-    fun providesAuthIntercepter() = AuthIntercepter()
+    fun providesAuthIntercepter() = AuthInterceptor()
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(authIntercepter: AuthIntercepter) = OkHttpClient.Builder()
-        .addInterceptor(authIntercepter)
+    fun providesOkHttpClient(authInterceptor: AuthInterceptor) = OkHttpClient.Builder()
+        .addInterceptor(authInterceptor)
         .addNetworkInterceptor(StethoInterceptor())
         .build()
 
@@ -51,4 +51,9 @@ object NetworkingModule {
         .diskCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
         .build()
+
+    @Provides
+    @Singleton
+    fun provideNetworkStateFlowBuilder(@ApplicationContext context: Context) =
+        NetworkStateFlowBuilder(context)
 }

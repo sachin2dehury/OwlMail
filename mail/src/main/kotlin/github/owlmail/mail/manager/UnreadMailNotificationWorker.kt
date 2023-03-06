@@ -46,7 +46,6 @@ class UnreadMailNotificationWorker @AssistedInject constructor(
         val response = mailRepository.getMailList(inboxSearchRequest).mapToResponseState()
         when (response) {
             is ResponseState.Success -> {
-
                 dataStoreManager.saveToDataStore(timeStamp)
 
                 val result = response.data?.body?.searchResponse?.conversation?.any {

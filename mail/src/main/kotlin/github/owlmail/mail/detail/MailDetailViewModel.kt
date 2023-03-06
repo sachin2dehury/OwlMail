@@ -9,11 +9,11 @@ import github.owlmail.mail.detail.model.ConvDetails
 import github.owlmail.mail.detail.model.MailDetailResponse
 import github.owlmail.networking.ResponseState
 import github.owlmail.networking.mapToResponseState
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class MailDetailViewModel @Inject constructor(
@@ -33,7 +33,7 @@ class MailDetailViewModel @Inject constructor(
                 detailDAO.insertAllMessage(list)
             }
             val message = detailDAO.getAllMessage(convDetails.cid)
-            Log.e("Preeti","$message")
+            Log.e("Preeti", "$message")
         }
     }
 }

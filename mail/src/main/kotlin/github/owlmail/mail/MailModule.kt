@@ -10,14 +10,14 @@ import github.owlmail.mail.api.MailDatabaseDeleteUseCase
 import github.owlmail.mail.detail.DetailDAO
 import github.owlmail.mail.inbox.database.MailDAO
 import github.owlmail.mail.manager.NotificationManager
-import retrofit2.Retrofit
 import javax.inject.Singleton
+import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)
 object MailModule {
 
-    //move moshi and retrofit to networking
+    // move moshi and retrofit to networking
     @Provides
     @Singleton
     fun providesService(retrofit: Retrofit) = retrofit.create(MailService::class.java)
@@ -30,7 +30,6 @@ object MailModule {
     @Singleton
     fun provideNotificationManager(@ApplicationContext context: Context) =
         NotificationManager(context)
-
 
     @Provides
     @Singleton

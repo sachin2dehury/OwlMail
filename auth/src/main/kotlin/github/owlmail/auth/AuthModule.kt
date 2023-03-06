@@ -1,7 +1,6 @@
 package github.owlmail.auth
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.Module
@@ -12,10 +11,11 @@ import dagger.hilt.components.SingletonComponent
 import github.owlmail.auth.api.AuthUseCase
 import github.owlmail.auth.api.LogoutUseCase
 import github.owlmail.contacts.api.ContactDatabaseDeleteUseCase
+import github.owlmail.core.DataStoreManager
 import github.owlmail.mail.api.MailDatabaseDeleteUseCase
-import github.owlmail.networking.AuthIntercepter
-import retrofit2.Retrofit
+import github.owlmail.networking.AuthInterceptor
 import javax.inject.Singleton
+import retrofit2.Retrofit
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -27,8 +27,8 @@ object AuthModule {
 
     @Provides
     @Singleton
-    fun provideRepository(service: AuthService, authIntercepter: AuthIntercepter) =
-        AuthRepository(authIntercepter, service)
+    fun provideRepository(service: AuthService, authInterceptor: AuthInterceptor) =
+        AuthRepository(authInterceptor, service)
 
     @Provides
     @Singleton
@@ -37,20 +37,15 @@ object AuthModule {
 
     @Provides
     @Singleton
-    fun provideDataStoreManager(dataStore: DataStore<Preferences>) =
-        github.owlmail.core.DataStoreManager(dataStore)
-
-    @Provides
-    @Singleton
     fun provideAuthUseCase(
         authRepository: AuthRepository,
-        dataStoreManager: github.owlmail.core.DataStoreManager
+        dataStoreManager: DataStoreManager
     ): AuthUseCase = AuthUseCaseImpl(authRepository, dataStoreManager)
 
     @Provides
     @Singleton
     fun provideLogoutUseCase(
-        dataStoreManager: github.owlmail.core.DataStoreManager,
+        dataStoreManager: DataStoreManager,
         authUseCase: AuthUseCase,
         mailDatabaseDeleteUseCase: MailDatabaseDeleteUseCase,
         contactDatabaseDeleteUseCase: ContactDatabaseDeleteUseCase

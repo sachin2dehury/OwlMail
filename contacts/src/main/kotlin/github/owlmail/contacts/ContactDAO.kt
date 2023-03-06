@@ -9,8 +9,14 @@ import github.owlmail.contacts.model.ContactResponse
 @Dao
 interface
 ContactDAO {
-    @Query("select * from contact where fileAsStr like '%' || :query || '%' order by fileAsStr asc limit :limit offset :offset")
-    suspend fun getAllContacts(limit: Int, offset: Int, query: String): List<ContactResponse.Body.SearchGalResponse.Cn>
+    @Query(
+        "select * from contact where fileAsStr like '%' || :query || '%' order by fileAsStr asc limit :limit offset :offset"
+    )
+    suspend fun getAllContacts(
+        limit: Int,
+        offset: Int,
+        query: String
+    ): List<ContactResponse.Body.SearchGalResponse.Cn>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllContacts(list: List<ContactResponse.Body.SearchGalResponse.Cn>)

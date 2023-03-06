@@ -29,7 +29,9 @@ class OwlMailConverter(private val moshi: Moshi) {
     )
 
     @TypeConverter
-    fun emailAddressToJSON(emailAddress: List<InboxSearchResponse.Body.SearchResponse.Conversation.EmailAddress?>?): String? {
+    fun emailAddressToJSON(
+        emailAddress: List<InboxSearchResponse.Body.SearchResponse.Conversation.EmailAddress?>?
+    ): String? {
         return moshi.adapter<List<InboxSearchResponse.Body.SearchResponse.Conversation.EmailAddress?>?>(
             emailAddressListType
         )
@@ -61,7 +63,9 @@ class OwlMailConverter(private val moshi: Moshi) {
     }
 
     @TypeConverter
-    fun emailAddressMessageToJSON(emailAddress: List<MailDetailResponse.Body.SearchConvResponse.Message.EmailAddress?>?): String? {
+    fun emailAddressMessageToJSON(
+        emailAddress: List<MailDetailResponse.Body.SearchConvResponse.Message.EmailAddress?>?
+    ): String? {
         return moshi.adapter<List<MailDetailResponse.Body.SearchConvResponse.Message.EmailAddress?>?>(
             emailAddressMessageListType
         )
@@ -77,7 +81,9 @@ class OwlMailConverter(private val moshi: Moshi) {
     }
 
     @TypeConverter
-    fun multiPartToJSON(multiPart: List<MailDetailResponse.Body.SearchConvResponse.Message.MultiPart>?): String? {
+    fun multiPartToJSON(
+        multiPart: List<MailDetailResponse.Body.SearchConvResponse.Message.MultiPart>?
+    ): String? {
         return moshi.adapter<List<MailDetailResponse.Body.SearchConvResponse.Message.MultiPart?>?>(
             multiPartListType
         )

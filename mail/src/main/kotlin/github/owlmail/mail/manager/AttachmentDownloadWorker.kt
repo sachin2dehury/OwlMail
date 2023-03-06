@@ -9,9 +9,9 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import github.owlmail.mail.MailRepository
 import github.owlmail.mail.R
+import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.File
 
 @HiltWorker
 class AttachmentDownloadWorker @AssistedInject constructor(
@@ -21,23 +21,23 @@ class AttachmentDownloadWorker @AssistedInject constructor(
     private val notificationManager: NotificationManager
 ) : CoroutineWorker(context, params) {
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
-        //api call and response
-        //save response in file
-        //notification of download
+        // api call and response
+        // save response in file
+        // notification of download
 
         val messageId = inputData.getString("id")
         val part = inputData.getString("part")
         val fileName = "File $messageId $part ${inputData.getString("filename").orEmpty()}".trim()
-        if (messageId.isNullOrEmpty()||part.isNullOrEmpty()){
+        if (messageId.isNullOrEmpty() || part.isNullOrEmpty()) {
             return@withContext Result.failure()
         }
-        val file = File(context.externalCacheDir,fileName)
-        if(file.exists()){
+        val file = File(context.externalCacheDir, fileName)
+        if (file.exists()) {
             return@withContext Result.success()
         } else {
             val response =
-                mailRepository.getMailAttachment(messageId,part)
-            with(file){
+                mailRepository.getMailAttachment(messageId, part)
+            with(file) {
                 createNewFile()
                 val fileContent = response.string()
                 writeText(fileContent)

@@ -12,12 +12,11 @@ import github.owlmail.mail.R
 import github.owlmail.mail.databinding.MailListItemBinding
 import github.owlmail.mail.inbox.model.InboxSearchResponse
 
-class MailAdapter() :
+class MailAdapter(private val onMailClick: OnMailClick) :
     PagingDataAdapter<InboxSearchResponse.Body.SearchResponse.Conversation, RecyclerView.ViewHolder>(
         diffCallback = MailListDiffer()
     ) {
-    //item in rv consists of sender name first line of subject and first line of body
-    var onClick: ((String?) -> Unit)? = null //store a func in var returns void
+    // item in rv consists of sender name first line of subject and first line of body
 
     class MailListDiffer :
         DiffUtil.ItemCallback<InboxSearchResponse.Body.SearchResponse.Conversation>() {
@@ -55,19 +54,19 @@ class MailAdapter() :
         } else {
             item?.body
         }
-        val hasAttachment = item?.flags?.contains("a",ignoreCase = true)?:false
+        val hasAttachment = item?.flags?.contains("a", ignoreCase = true) ?: false
         binding.ivAttachment.isVisible = hasAttachment
-        val isFlagged = item?.flags?.contains("f",ignoreCase = true)?:false
+        val isFlagged = item?.flags?.contains("f", ignoreCase = true) ?: false
         binding.ivFlag.isVisible = isFlagged
-        val isUnread = item?.flags?.contains("u",ignoreCase = true)?:false
-        if (isUnread){
+        val isUnread = item?.flags?.contains("u", ignoreCase = true) ?: false
+        if (isUnread) {
             binding.senderName.setTextColor(Color.RED)
-        } else{
+        } else {
             val textColor = binding.mailSubject.currentTextColor
             binding.senderName.setTextColor(textColor)
         }
         binding.root.setOnClickListener {
-            onClick?.invoke(item?.id)
+            onMailClick.invoke(item?.id)
         }
     }
 
@@ -78,5 +77,4 @@ class MailAdapter() :
     }
 
     inner class MailListViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
 }
