@@ -117,8 +117,6 @@ dependencies {
     implementation "androidx.metrics:metrics-performance:1.0.0-alpha03"
     implementation("androidx.profileinstaller:profileinstaller:1.2.2")
 
-    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
-
     implementation(project(Modules.Auth))
     implementation(project(Modules.Mail))
     implementation(project(Modules.Contacts))

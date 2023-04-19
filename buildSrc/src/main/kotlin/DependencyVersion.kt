@@ -9,7 +9,7 @@ object DependencyVersion {
     const val ConstraintLayout = "2.1.4"
 
     // Hilt
-    const val DaggerHilt = "2.44"
+    const val DaggerHilt = "2.45"
     const val HiltWork = "1.0.0"
     const val WorkRuntime = "2.8.0"
 
