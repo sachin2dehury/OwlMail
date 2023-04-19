@@ -50,7 +50,7 @@ class OwlMailAppPlugIn : Plugin<Project> {
                     )
                 }
                 debug {
-                    applicationIdSuffix = "debug"
+//                    applicationIdSuffix = "debug"
                 }
 //                benchmark {
 //                    // Enable all the optimizations from release build through initWith(release).
