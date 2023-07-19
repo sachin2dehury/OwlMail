@@ -1,6 +1,5 @@
 package github.owlmail.benchmark
 
-import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.StartupMode
 import androidx.benchmark.macro.StartupTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
@@ -27,17 +26,11 @@ class ExampleStartupBenchmark {
     val benchmarkRule = MacrobenchmarkRule()
 
     @Test
-    fun startUpCompilationModeNone() = startup(CompilationMode.None())
-
-    @Test
-    fun startUpCompilationModePartial() = startup(CompilationMode.Partial())
-
-    private fun startup(mode: CompilationMode) = benchmarkRule.measureRepeated(
+    fun startup() = benchmarkRule.measureRepeated(
         packageName = "github.owlmail.app",
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
-        startupMode = StartupMode.COLD,
-        compilationMode = mode,
+        startupMode = StartupMode.COLD
     ) {
         pressHome()
         startActivityAndWait()
