@@ -40,8 +40,8 @@ class UnreadMailNotificationWorker @AssistedInject constructor(
             )
         )
         val timeStamp = System.currentTimeMillis()
-        val previousTimeStamp =
-            dataStoreManager.readFromDataStore().first().get(NOTIFICATION_TIME_STAMP) ?: 0
+        val previousTimeStamp = 0
+//            dataStoreManager.readFromDataStore().first()[NOTIFICATION_TIME_STAMP] ?: 0
 
         val response = mailRepository.getMailList(inboxSearchRequest).mapToResponseState()
         when (response) {

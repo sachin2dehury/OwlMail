@@ -8,6 +8,9 @@
         android:id="@+id/contactListFragment"
         android:name="github.owlmail.contacts.ContactListFragment"
         android:label="ContactListFragment">
-        <deepLink app:uri="android-app://github.owlmail.mail/contactListFragment" />
+        <deepLink app:uri="https://github.owlmail.mail/contactListFragment/{uid}" />
+        <argument
+            android:name="uid"
+            app:argType="string" />
     </fragment>
 </navigation>

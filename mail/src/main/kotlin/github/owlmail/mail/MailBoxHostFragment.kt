@@ -116,7 +116,7 @@ class MailBoxHostFragment : Fragment(), MenuProvider {
 
             R.id.contacts -> {
                 val request = NavDeepLinkRequest.Builder
-                    .fromUri(ContactsNavigationDeeplink.CONTACTS_FRAGMENT.toUri())
+                    .fromUri((ContactsNavigationDeeplink.CONTACTS_FRAGMENT+"/abc").toUri())
                     .build()
                 findNavController()
                     .navigate(request)

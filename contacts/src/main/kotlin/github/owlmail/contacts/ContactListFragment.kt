@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import github.owlmail.contacts.databinding.ContactListBinding
 import javax.inject.Inject
@@ -21,6 +22,8 @@ class ContactListFragment : Fragment(), MenuProvider {
 
     @Inject
     lateinit var contactAdapter: ContactAdapter
+
+    private val args: ContactListFragmentArgs by navArgs()
     private val viewModel: ContactViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +36,7 @@ class ContactListFragment : Fragment(), MenuProvider {
 
     private fun setUpRecyclerView() {
         binding?.recyclerView?.adapter = contactAdapter
+        println("Preeti ${args.uid}")
     }
 
     private fun subscribeToObservers() {
